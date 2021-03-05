@@ -1,0 +1,21 @@
+name: "Close stale issues"
+on:
+  schedule:
+  - cron: "0 1 * * *"
+
+jobs:
+  stale:
+    name: stale
+    runs-on: self-hosted
+    container:
+      image: ubuntu:latest
+
+    steps:
+    - uses: actions/stale@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'このissueは30日間更新がないため5日後にcloseします。closeしたくない場合は【close予定】ラベルを外してください。'
+        days-before-stale: 30
+        days-before-close: 5
+        exempt-issue-labels: "Backlog"
+        stale-issue-label: "close予定"
