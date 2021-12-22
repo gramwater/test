@@ -10,6 +10,7 @@ jobs:
   start_release:
     if: github.event.inputs.mode == 'normal' || github.event.inputs.mode == 'prerelease'
     runs-on: ubuntu-latest
+    environment: hoge
     env:
       RESULT_PATH: /tmp/result.txt
       IS_PRERELEASE: ${{ github.event.inputs.mode == 'prerelease' }}
